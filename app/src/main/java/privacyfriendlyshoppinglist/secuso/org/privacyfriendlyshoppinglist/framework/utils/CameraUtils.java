@@ -11,6 +11,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import android.graphics.Matrix;
+import java.io.File;
+import android.hardware.Camera;
+import rx.Observable;
 
 /**
  * Description:
@@ -90,6 +94,9 @@ public abstract class CameraUtils
                 Bitmap rotatedBitmap = getRotatedBitmap(bitmap, rotation);
                 FileOutputStream fos = new FileOutputStream(imageFile);
                 rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+				if (rotatedBitmap != null) {
+					rotatedBitmap.recycle();
+				}
                 removeImageFromSet(imagePath);
                 fos.close();
             }
